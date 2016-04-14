@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <title>Copenhagen Neighborhood Map</title>
+        <link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Vollkorn&effect=fire-animation' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="css/stylesheet.css">
+    </head>
+    <body>
+        <section>
+            <div class="container"><!--Beginning of Container Div-->
+                <div class="row text-center">
+                    <div class=" header col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="font-effect-fire-animation">Search for a cool spots in Copenhagen</h3>
+                    </div>
+
+                </div>
+                <div class="row text-center">
+                    <div class="menu col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <form>
+                            <input class="form-control" placeholder="Enter location from the list" type="search" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
+                            <ul class="location-list" data-bind="foreach: visible">
+                                <li data-bind="text: areaDescription, click: openInfoWindow"></li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+                <div id="map"></div>
+            </div><!--End of Container Div-->
+        </section>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="javascript/knockout.js"></script>
+        <script type="text/javascript" src="bootstrap/dist/js/bootstrap.js"></script>
+        <script async src="https://maps.googleapis.com/maps/api/js?callback=locationDetails" onerror="googleError()"></script>
+        <script src="javascript/main.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,123 @@
+html,
+body {
+    height: 100%;
+
+}
+
+.row {
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+input {
+    margin: 20px 20px 20px 0;
+    padding: 10px 0 10px 10px;
+    display: inline-block;
+    float: left;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+h1,
+h2,
+p,
+li {
+    font-family: 'PT Serif', sans-serif;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    
+}
+
+h1 {
+    font-weight: bold;
+    display: inline-block;
+}
+
+h2 {
+    font-weight: 300;
+}
+
+li{
+    color:#000;
+}
+
+a {
+    text-decoration: none;
+    color: #111;
+}
+
+a:hover h2 {
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+    font-size: 16px;
+}
+
+img {
+    text-align: center;
+}
+
+.header{
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+    height: 100%;
+    z-index: 1;
+    color:#000;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+/* markerInfo used for the inner properties of the map after clicking on a marker*/
+.markerInfo h1 {
+    color: #000;
+    font-size: 14px;
+    background-color: #48b5e9;
+    padding: 10px;
+    margin: 1px;
+}
+
+.markerInfo h2 {
+    color: #000;
+    font-size: 14px;
+
+}
+
+.menu {
+    background: #BFA0A0;
+    opacity: 0.8;
+    filter: alpha(opacity=80); 
+    height: 100%;
+    z-index: 1;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin-top: 5px;
+    padding: 10px;
+    display: block;
+    float: left;
+}
+
+.menu li a {
+    color: #fff;
+}
+
+.img-responsive {
+
+    display: inline-block;
+}
+
+#map {
+    position: absolute;
+    max-height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
