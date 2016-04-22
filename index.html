@@ -24,10 +24,8 @@
                   <div id="slideDown">
                      <h3>Click here to Slide Up or Slide Down the List</h3>
                   </div>
-                  <!--Bind list to query search results to show only results matching query search-->
-                  <ul id="slideUp"  data-bind="template: {initialMarkers:'name', foreach:filteredPlaces}, value: self.filteredPlaces">
+                  <ul id="slideUp"  data-bind="template: {areaData:'name', foreach:filteredPlaces}, value: self.filteredPlaces">
                      <li class="menu">
-                        <!--Bind list items to placeItem names to populate list items and connects list selection to marker triggers-->
                         <a>
                            <p data-bind="text:name, click: $root.markerTrigger"></p>
                         </a>
@@ -49,13 +47,13 @@
            });
          });   
       </script>
-      <!--Google map error function to show when map cannot be loaded-->
+      <!--Error code when google Map doesnot load-->
       <script>
          function googleError() {
            alert("Google Map did not load at this moment");
          }
       </script>
-      <script src="js/app.js"></script>
+      <script src="js/main.js"></script>
       <!--Google map API key-->
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTqavAonxsJTIBRyN4OgospkGPetfGfM&callback=initMap" onerror="googleError()"
          >
