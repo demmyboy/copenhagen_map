@@ -1,43 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-        <title>Copenhagen Neighborhood Map</title>
-        <link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Vollkorn&effect=fire-animation' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
-        <section>
-            <div class="container"><!--Beginning of Container Div-->
-                <div class="row text-center">
-                    <div class=" header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h3 class="font-effect-fire-animation">Search for a cool spots in Copenhagen</h3>
-                    </div>
-
-                </div>
-                <div class="row text-center">
-                    <div class="menu col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <form>
-                            <input class="form-control" placeholder="Enter location from the list" type="search" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
-                            <ul class="location-list" data-bind="foreach: visible">
-                                <li data-bind="text: areaDescription, click: openInfoWindow"></li>
-                            </ul>
-                        </form>
-                    </div>
-                </div>
-                <div id="map"></div>
-            </div><!--End of Container Div-->
-        </section>
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script type="text/javascript" src="javascript/knockout.js"></script>
-        <script type="text/javascript" src="bootstrap/dist/js/bootstrap.js"></script>
-        <script async src="https://maps.googleapis.com/maps/api/js?callback=locationDetails" onerror="googleError()"></script>
-        <script src="javascript/main.js"></script>
-    </body>
-
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Copenhagen Neighborhood Map</title>
+      <link rel="stylesheet" href="css/bootstrap.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet'>
+      <link href='https://fonts.googleapis.com/css?family=Vollkorn&effect=fire-animation' rel='stylesheet'>
+   </head>
+   <body>
+      <div class = "container">
+         <div class="row text-center">
+            <div class=" header col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <h3 class="font-effect-fire-animation">Search for a cool spots in Copenhagen</h3>
+            </div>
+         </div>
+         <div class="row text-center">
+            <div class="menu col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <form>
+                  <input class="form-control" placeholder="Enter Location from List" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+                  <div id="slideDown">
+                     <h3>Click here to Slide Up or Slide Down the List</h3>
+                  </div>
+                  <!--Bind list to query search results to show only results matching query search-->
+                  <ul id="slideUp"  data-bind="template: {initialMarkers:'name', foreach:filteredPlaces}, value: self.filteredPlaces">
+                     <li class="menu">
+                        <!--Bind list items to placeItem names to populate list items and connects list selection to marker triggers-->
+                        <a>
+                           <p data-bind="text:name, click: $root.markerTrigger"></p>
+                        </a>
+                     </li>
+                  </ul>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!--end if container-->
+      <div id="map"></div>
+      <script src="js/jquery-1.11.3.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/knockout-3.4.0.js"></script>
+      <script type="text/javascript">
+         $(document).ready(function(){
+           $('#slideDown').click(function(){
+             $('#slideUp').slideToggle('slow');
+           });
+         });   
+      </script>
+      <!--Google map error function to show when map cannot be loaded-->
+      <script>
+         function googleError() {
+           alert("Google Map did not load at this moment");
+         }
+      </script>
+      <script src="js/app.js"></script>
+      <!--Google map API key-->
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTqavAonxsJTIBRyN4OgospkGPetfGfM&callback=initMap" onerror="googleError()"
+         >
+      </script>
+   </body>
 </html>

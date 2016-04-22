@@ -1,0 +1,73 @@
+html, 
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+p,
+li {
+    font-family: 'PT Serif', sans-serif;
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+input {
+    margin: 20px 20px 20px 0;
+    padding: 10px 0 10px 10px;
+    display: inline-block;
+    float: left;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+img {
+    text-align: center;
+}
+
+#map {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+ /* For IE8 and earlier */
+    height: 100%;
+    z-index: 1;
+    color: #000;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+.menu {
+    background: #BFA0A0;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    height: 100%;
+    z-index: 1;
+    list-style: none !important;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin-top: 5px;
+    padding: 10px;
+    display: block;
+    float: left;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+}
