@@ -90,7 +90,7 @@ var map;
 var infoWindow;
 var marker;
 
-function initMap () {
+// function initMap () {
 
 
 //View Model Proper
@@ -109,13 +109,13 @@ var AppViewModel = function () {
   var self = this;
 
   // this is the location that the viewer sees when the page is loaded (heart of Copenhagen)
-  var mapOptions = {
-    zoom: 10,
-    center: {lat: 55.676097, lng: 12.568337}
-  };
+  // var mapOptions = {
+  //   zoom: 10,
+  //   center: {lat: 55.676097, lng: 12.568337}
+  // };
 
-  map = new google.maps.Map(document.getElementById("map"),
-      mapOptions);
+  // map = new google.maps.Map(document.getElementById("map"),
+  //     mapOptions);
 
   //Create event listener to cause map to resize and remain centered in response to a window resize
   google.maps.event.addDomListener(window, "resize", function() {
@@ -169,6 +169,10 @@ var AppViewModel = function () {
           //Wikipedia API request URL
           var wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + alteredName + "&limit=1&redirects=return&format=json";
 
+          var wikiRequestTimeout = setTimeout(function() {
+            contentString = '<div id="content">' + placeNames + '<p>' + placeAddresses + '</p>' + '<p>' + response[2] + '</p>' + '<a href=" ' + url + '">' + url + '</a>' + '<img class="img-responsive" src=" ' + placeStreetView + '">' +'</div>';
+                }, 8000);
+          infoWindow.setContent("wiki info cannot be found at the moment, try again later");
           //AJAX request for Wikipedia API information used in infowindows
           $.ajax ({
             url: wikiUrl,
@@ -192,12 +196,14 @@ var AppViewModel = function () {
                 console.log(wikiUrl);
                 infoWindow.setContent(contentString);
               }
+              clearTimeout(wikiRequestTimeout);
             }
           //this code will run if the the wiki cannot be reached at the moment, mayb due to internet connection
-          }).error(function(e){
-            contentString = '<div id="content">' + placeNames + '<p>' + placeAddresses + '</p>' + '<p>' + 'Cannot connect to reach Wikipedia'+ '</p>' + '</div>';
-            infoWindow.setContent(contentString);
-          });
+           })
+          //.error(function(e){
+          //   contentString = '<div id="content">' + placeNames + '<p>' + placeAddresses + '</p>' + '<p>' + 'Cannot connect to reach Wikipedia'+ '</p>' + '</div>';
+          //   infoWindow.setContent(contentString);
+          // });
       //open the infoWindow
       console.log("clicked");
       infoWindow.open(map, this);
@@ -224,7 +230,7 @@ var AppViewModel = function () {
       return self.markerArray();
     } else {
         return ko.utils.arrayFilter(self.markerArray(), function(location) {
-          is_filtered = stringStartsWith(location.name.toLowerCase(), filter);
+          is_filtered = location.name.toLowerCase().indexOf(filter) > 0;
            if (is_filtered) {
               location.marker.setVisible(true);
               console.log("clicked");
@@ -239,8 +245,15 @@ var AppViewModel = function () {
   }, self);
 };
 
-//Call the AppViewModel function
-ko.applyBindings(new AppViewModel());
-}
+
+// this is the location that the viewer sees when the page is loaded (heart of Copenhagen)
+var initMap = function(){
+  var mapOptions = {
+    zoom: 10,
+    center: {lat: 55.676097, lng: 12.568337}
+  };
+    map = new google.maps.Map(document.getElementById("map"),mapOptions); 
+    ko.applyBindings(new AppViewModel());//Call the AppViewModel function
+};
 
 
